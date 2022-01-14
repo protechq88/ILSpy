@@ -52,6 +52,7 @@ namespace ICSharpCode.ILSpy
 	#region Main Menu
 	public interface IMainMenuCommandMetadata
 	{
+		string ID { get; }
 		string MenuIcon { get; }
 		string Header { get; }
 		string Menu { get; }
@@ -65,22 +66,17 @@ namespace ICSharpCode.ILSpy
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
 	public class ExportMainMenuCommandAttribute : ExportAttribute, IMainMenuCommandMetadata
 	{
-		bool isEnabled = true;
-
 		public ExportMainMenuCommandAttribute()
 			: base("MainMenuCommand", typeof(ICommand))
 		{
 		}
-
+		public string ID { get; set; }
 		public string MenuIcon { get; set; }
 		public string Header { get; set; }
 		public string Menu { get; set; }
 		public string MenuCategory { get; set; }
 		public string InputGestureText { get; set; }
-		public bool IsEnabled {
-			get { return isEnabled; }
-			set { isEnabled = value; }
-		}
+		public bool IsEnabled { get; set; } = true;
 		public double MenuOrder { get; set; }
 	}
 	#endregion
